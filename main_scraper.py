@@ -10,8 +10,9 @@ scrapers = {
     'Vilros': scrapers.scrape_vilros,
     'Chicago Electronic': scrapers.scrape_chicago,
     'Sparkfun': scrapers.scrape_sparkfun,
-    'Okdo': scrapers.scrape_okdo,
-    'Microcenter': scrapers.scrape_microcenter
+    #Teh broked at the moment.
+    #'Okdo': scrapers.scrape_okdo,
+    #'Microcenter': scrapers.scrape_microcenter
 }
 
 

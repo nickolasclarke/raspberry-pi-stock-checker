@@ -31,8 +31,9 @@ def pretty_print(name: str, price: str, in_stock: bool, start='', date=None, oth
     print(f'{start * 2}Price: {termcolor.colored(price, attrs=["reverse"])}')
 
 
-def better_request(url: str, name: str, retry_time=4.0) -> requests.models.Response:
-    while True:
+def better_request(url: str, name: str, retry_time=4.0, tries=2) -> requests.models.Response:
+    timeout = 1
+    while timeout < tries:
         try:
             request = requests.get(url)
             if "200" not in str(request):
@@ -42,7 +43,8 @@ def better_request(url: str, name: str, retry_time=4.0) -> requests.models.Respo
         except KeyboardInterrupt:
             exit()
         except:
-            print(termcolor.colored(f'Request to {name} failed. Retrying in {retry_time} seconds...', 'red'))
+            print(termcolor.colored(f'Request attempt #{timeout} to {name} failed. Retrying in {retry_time} seconds...', 'red'))
+            timeout+= timeout
             time.sleep(retry_time)
 
 
